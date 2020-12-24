@@ -774,4 +774,10 @@ input.radio-volume {
 .video-fullscreen {
     cursor: pointer;
 }
+
+input.audio-volume {
+    max-width: 100px;
+    margin: 0 5px;
+}
+
 /*# sourceMappingURL=style.min.css.map */
