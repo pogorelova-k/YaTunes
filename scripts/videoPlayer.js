@@ -1,3 +1,4 @@
+import { addZero } from './supScript.js';
 export const videoPlayerInit = () => {
    const videoPlayer = document.querySelector('.video-player');
    const videoButtonPlay = document.querySelector('.video-button__play');
@@ -5,6 +6,12 @@ export const videoPlayerInit = () => {
    const videoTimePassed = document.querySelector('.video-time__passed');
    const videoProgress = document.querySelector('.video-progress');
    const videoTimeTotal = document.querySelector('.video-time__total');
+   const videoVolume = document.querySelector('.video-volume');
+   const videoFullscreen = document.querySelector('.video-fullscreen');
+
+   videoFullscreen.addEventListener('click', () => {
+      videoPlayer.requestFullscreen();
+   });
 
    const toggleIcon = () => {
       if (videoPlayer.paused) {
@@ -22,7 +29,7 @@ export const videoPlayerInit = () => {
          } else {
             videoPlayer.pause();
          }
-         // toggleIcon();
+         // toggleIcon();*
    };
 
    const stopPlay = () => {
@@ -30,6 +37,7 @@ export const videoPlayerInit = () => {
       videoPlayer.currentTime = 0;
    };
 
+   // при испоьзовании toggleIcon();*
    videoPlayer.addEventListener('click', togglePlay);
    videoButtonPlay.addEventListener('click', togglePlay);
 
@@ -38,7 +46,12 @@ export const videoPlayerInit = () => {
 
    videoButtonStop.addEventListener('click', stopPlay);
 
-   const addZero = n => n < 10 ? '0' + n : n;
+  
+
+   const changeVolume = () => {
+      const valueVolume = videoVolume.value;
+      videoPlayer.volume = valueVolume / 100;
+   };
 
    videoPlayer.addEventListener('timeupdate', () => {
       const currentTime = videoPlayer.currentTime;
@@ -56,11 +69,15 @@ export const videoPlayerInit = () => {
       videoTimeTotal.textContent = `${addZero(minuteTotal)}:${addZero(secondsTotal)}`;
    });
 
-   videoProgress.addEventListener('change', () => {
+   videoProgress.addEventListener('input', () => {
       const duration = videoPlayer.duration;
       const value = videoProgress.value;
 
       videoPlayer.currentTime = (value * duration) / 100;
    });
+
+   videoVolume.addEventListener('input', changeVolume);
+
+   changeVolume();
 
 };
