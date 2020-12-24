@@ -8,6 +8,7 @@ export const videoPlayerInit = () => {
    const videoTimeTotal = document.querySelector('.video-time__total');
    const videoVolume = document.querySelector('.video-volume');
    const videoFullscreen = document.querySelector('.video-fullscreen');
+   const videoMute = document.querySelector('.video-mute');
 
    videoFullscreen.addEventListener('click', () => {
       videoPlayer.requestFullscreen();
@@ -51,6 +52,7 @@ export const videoPlayerInit = () => {
    const changeVolume = () => {
       const valueVolume = videoVolume.value;
       videoPlayer.volume = valueVolume / 100;
+      videoPlayer.muted = false;
    };
 
    videoPlayer.addEventListener('timeupdate', () => {
@@ -78,6 +80,15 @@ export const videoPlayerInit = () => {
 
    videoVolume.addEventListener('input', changeVolume);
 
+   videoMute.addEventListener('click', () => {
+      videoPlayer.muted = !videoPlayer.muted;
+   })
+
    changeVolume();
+
+   videoPlayerInit.stop = () => {
+      videoPlayer.pause();
+      toggleIcon();
+   };
 
 };

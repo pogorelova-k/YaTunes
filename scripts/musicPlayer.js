@@ -11,6 +11,7 @@ export const musicPlayerInit = () => {
    const audioTimePassed = document.querySelector('.audio-time__passed');
    const audioTimeTotal = document.querySelector('.audio-time__total');
    const audioVolume = document.querySelector('.audio-volume');
+   const audioMute = document.querySelector('.audio-mute');
 
    const playlist = ['hello', 'flow', 'speed'];
 
@@ -52,9 +53,10 @@ export const musicPlayerInit = () => {
    const changeVolume = () => {
       const valueVolume = audioVolume.value;
       audioPlayer.volume = valueVolume / 100; 
+      audioPlayer.muted = false;
    };
 
-   audioNavigation.addEventListener('click', event => {
+  audioNavigation.addEventListener('click', event => {
       const target = event.target;
 
       if (target.classList.contains('audio-button__play')) {
@@ -79,7 +81,8 @@ export const musicPlayerInit = () => {
          nextTrack();
       }
    });
-
+ 
+   
    audioPlayer.addEventListener('ended', () => {
       nextTrack();
       audioPlayer.play();
@@ -111,6 +114,21 @@ export const musicPlayerInit = () => {
 
    audioVolume.addEventListener('input', changeVolume);
 
+   audioMute.addEventListener('click',  () => {
+      audioPlayer.muted = !audioPlayer.muted;
+   });
+
    changeVolume();
+ 
+
+   musicPlayerInit.stop = () => {
+      if (!audioPlayer.paused) {
+         audioPlayer.pause();
+         audio.classList.remove('play');
+         audioButtonPlay.classList.remove('fa-pause');
+         audioButtonPlay.classList.add('fa-play');
+      }
+      
+   };
 };
 

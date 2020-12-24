@@ -6,14 +6,17 @@ export const radioPlayerInit = () => {
    const radioItem = document.querySelectorAll('.radio-item');
    const radioStop = document.querySelector('.radio-stop');
    const radioVolume = document.querySelector('.radio-volume');
+   const radioMute = document.querySelector('.radio-mute');
  
-
+   
    const audio = new Audio();
    audio.type = 'audio/aac';
+   
+   const prevVolume = audio.volume;
 
    radioStop.disabled = true;
 
-   const changeiconPlay = () => {
+   const changeIconPlay = () => {
       if (audio.paused) {
          radio.classList.remove('play');
          radioStop.classList.add('fa-play');
@@ -33,6 +36,7 @@ export const radioPlayerInit = () => {
    const changeVolume = () => {
       const valueVolume = radioVolume.value;
       audio.volume = valueVolume / 100;
+      audio.muted = false;
    };
 
    radioNavigation.addEventListener('change', event => {
@@ -50,7 +54,7 @@ export const radioPlayerInit = () => {
       radioStop.disabled = false;
       audio.src = target.dataset.radioStantion;
       audio.play();
-      changeiconPlay();
+      changeIconPlay();
    });
 
    radioStop.addEventListener('click', () => {
@@ -59,11 +63,19 @@ export const radioPlayerInit = () => {
       }  else {
          audio.pause();
       }
-      changeiconPlay();
+      changeIconPlay();
    });
 
    radioVolume.addEventListener('input', changeVolume);
 
+   radioMute.addEventListener('click',  () => {
+      audio.muted = !audio.muted;
+   });
+
    changeVolume();
 
+   radioPlayerInit.stop = () => {
+      audio.pause();
+      changeIconPlay();
+   };
 };
