@@ -22,7 +22,7 @@
 	<meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 	<title>ЯTunes</title>
-	<script src="scripts/index.js" type="module"></script>
+	<script src="dist/script.js" type="module""></script>
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/font-awesome.min.css">
 	<link rel="stylesheet" href="styles/style.min.css">
@@ -112,7 +112,8 @@
 					<form class="radio-navigation">
 						<h2 class="radio-header">Другие радиостанции</h2>
 						<ul class="radio-list">
-							<li class="radio-item">
+
+							<!-- <li class="radio-item">
 								<label>
 									<div class="radio-check">
 										<img class="radio-img" src="radio/RTLGroove.png" alt="обложка">
@@ -121,9 +122,9 @@
 										data-radio-stantion="http://shoutcast.rtl.it:3040/">
 									<span class="radio-name">RTL Groove</span>
 								</label>
-							</li>
+							</li> -->
 
-							<li class="radio-item">
+							<!-- <li class="radio-item">
 								<label>
 									<div class="radio-check">
 										<img class="radio-img" src="radio/Energy.png" alt="обложка">
@@ -132,7 +133,7 @@
 										data-radio-stantion="http://ic4.101.ru:8000/region_energy_161">
 									<span class="radio-name">Energy</span>
 								</label>
-							</li>
+							</li> -->
 
 							<li class="radio-item">
 								<label>
@@ -185,10 +186,10 @@
 			<footer class="footer-fix radio-footer">
 				<button class="radio-stop fa fa-play"></button>
 				<div>
+					<span class="fa fa-volume-off control-icon radio-mute"></span>
 					<span class="fa fa-volume-down control-icon"></span>
 					<input type="range" class="radio-volume control-volume" min="0" max="100" value="50">
 					<span class="fa fa-volume-up control-icon"></span>
-					<span class="fa fa-volume-off control-icon radio-mute"></span>
 				</div>
 			</footer>
 		</article>
